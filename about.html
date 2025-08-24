@@ -6,23 +6,29 @@
   <title>About • YG-GEN</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
-<body data-theme="dark">
+<body>
   <header class="nav big">
     <div class="brand">YG-GEN ♫</div>
-    <nav>
+    <nav class="topnav">
       <a href="index.html">Home</a>
       <a href="generator.html">Generator</a>
       <a href="gallery.html">Gallery</a>
       <a href="about.html" class="active">About</a>
     </nav>
-    <div class="right"><button id="themeToggle" class="btn-ghost">🌙</button></div>
+    <div class="theme-controls">
+      <label for="themeChoiceAbout">Theme</label>
+      <select id="themeChoiceAbout">
+        <option value="yg">YG Official</option>
+        <option value="cute">Cute Fan</option>
+      </select>
+    </div>
   </header>
 
   <main class="container large">
     <h2 class="huge">About this fan project</h2>
-    <p>This is a fan-made browser app that generates original K-POP style songs inspired by BLACKPINK and BABYMONSTER (YG flavor). Everything runs locally in your browser (WebAudio + SpeechSynthesis) — no servers or paid APIs.</p>
+    <p>This is a fan-made generator inspired by BLACKPINK and BABYMONSTER. It runs fully in your browser: lyrics generation, live TTS playback (browser voices), and downloadable musical renders using WebAudio + MediaRecorder. No servers, no tokens, no account.</p>
     <p><strong>Copyright:</strong> © 2025 Abdur Rahman Mansoor — github.com/armansoor</p>
-    <p>Live TTS playback uses your browser's voices; downloadable WAVs are produced by an internal musical synth so the file can be downloaded consistently across browsers.</p>
+    <p>Live TTS uses your browser's available voices (English/Korean). Downloadable audio is produced by an internal synth so the file is available across browsers.</p>
   </main>
 
   <footer class="foot big-foot">
