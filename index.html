@@ -1,44 +1,45 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>KPOP Fan Song Generator</title>
-  <link rel="stylesheet" href="styles.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>YG KPOP Fan Generator</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
-<body class="light">
-  <header>
-    <nav>
-      <h1>YG-Style KPOP Song Generator</h1>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="generator.html">Generator</a></li>
-        <li><a href="gallery.html">Gallery</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><button id="modeToggle">🌙</button></li>
-      </ul>
+<body data-theme="light">
+  <header class="nav">
+    <div class="brand">YG-GEN ♫</div>
+    <nav class="menu">
+      <a href="index.html">Home</a>
+      <a href="generator.html">Generator</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="about.html">About</a>
     </nav>
+    <button id="themeToggle" class="icon">🌙</button>
   </header>
 
-  <section class="parallax parallax-1">
-    <h2>BLACKPINK × BABYMONSTER Inspired</h2>
-    <p>Generate random fan-made songs with YG vibes!</p>
-    <a href="generator.html" class="cta">Start Generating</a>
+  <section class="hero parallax-1">
+    <div class="hero-inner">
+      <h1>BLACKPINK × BABYMONSTER</h1>
+      <p>Fan-made K-POP song generator — lyrics, TTS playback, and downloadable WAV (browser only).</p>
+      <a class="cta" href="generator.html">Generate a Song</a>
+    </div>
   </section>
 
-  <section class="parallax parallax-2">
-    <h2>English + 한국어</h2>
-    <p>Lyrics in both languages, with rap and vocals per member.</p>
+  <section class="features">
+    <h2>What it does</h2>
+    <ul>
+      <li>Generates full-length structured songs (40–60 lines) with member-wise lines</li>
+      <li>Plays TTS in Korean/English (live)</li>
+      <li>Renders a musical WAV using browser WebAudio (downloadable)</li>
+      <li>Works completely in the browser — no servers, no tokens</li>
+    </ul>
   </section>
 
-  <section class="parallax parallax-3">
-    <h2>Audio Included</h2>
-    <p>AI-generated synth vocals + browser TTS (English & Korean).</p>
-  </section>
-
-  <footer>
-    <p>© 2025 Abdur Rahman Mansoor | Fan-Made Project</p>
+  <footer class="foot">
+    © 2025 Abdur Rahman Mansoor — github.com/armansoor • Fan project
   </footer>
-  <script src="app.js"></script>
+
+  <script src="app.js" defer></script>
 </body>
 </html>
