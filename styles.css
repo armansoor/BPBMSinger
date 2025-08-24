@@ -1,48 +1,61 @@
-/* Large, bold, responsive UI with parallax hero and big controls */
+/* Big, modern UI with two selectable themes:
+   - 'yg' = dark, neon accent (YG Official)
+   - 'cute' = light, pastel (Cute Fan)
+   Theme is chosen by JS and applied via [data-style] on <html>.
+*/
+
+/* base variables (neutral) */
 :root{
   --bg:#0b0c12; --card:#0f1220; --muted:#9aa3b2; --accent:#ff3b8a; --glass: rgba(255,255,255,0.04); --fg:#eef2ff;
   --big: clamp(18px, 2.2vw, 22px);
+  --radius: 14px;
 }
-[data-theme="light"]{
-  --bg:#f8fafc; --card:#ffffff; --muted:#6b7280; --accent:#ff3b8a; --fg:#081022;
+html[data-style="cute"]{
+  --bg:#fff7fb; --card:#ffffff; --muted:#6b7280; --accent:#ff8fb7; --fg:#0b1220; --glass: rgba(0,0,0,0.04);
 }
+html[data-style="yg"]{
+  --bg:#0b0c12; --card:#0f1220; --muted:#9aa3b2; --accent:#ff3b8a; --fg:#eef2ff;
+}
+
 *{box-sizing:border-box}
 body{margin:0;font-family:Inter,system-ui,Arial,sans-serif;background:var(--bg);color:var(--fg);-webkit-font-smoothing:antialiased}
-.nav{display:flex;align-items:center;justify-content:space-between;padding:18px 36px;background:linear-gradient(180deg,rgba(0,0,0,.25),transparent);position:sticky;top:0;z-index:40}
-.brand{font-weight:800;font-size:1.25rem}
-.nav a{color:var(--fg);text-decoration:none;margin:0 12px;font-weight:700}
-.nav a.active{opacity:1}
-.right .btn-ghost{background:transparent;border:0;color:var(--fg);font-size:1.1rem;cursor:pointer}
-.big-hero{height:78vh;background-image:url('https://i.imgur.com/Tbb7cFs.jpg');background-attachment:fixed;background-size:cover;background-position:center;display:flex;align-items:center}
-.hero-inner{text-align:center;padding:28px;background:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.35));border-radius:18px}
-.huge{font-size:clamp(28px, 5.5vw, 64px);margin:0 0 12px}
-.lead{font-size:clamp(14px,2vw,20px);opacity:.95}
-.cta-row{display:flex;gap:14px;justify-content:center;margin-top:18px}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:18px 34px;background:linear-gradient(180deg,rgba(0,0,0,.12),transparent);position:sticky;top:0;z-index:40}
+.brand{font-weight:900;font-size:1.15rem}
+.topnav a{color:var(--fg);text-decoration:none;margin:0 12px;font-weight:700}
+.topnav a.active{opacity:1}
+.theme-controls{display:flex;gap:8px;align-items:center}
 .container{max-width:1200px;margin:28px auto;padding:0 20px}
-.panel{background:var(--card);padding:20px;border-radius:14px;box-shadow:0 12px 40px rgba(0,0,0,.45);margin-bottom:20px}
-.big-panel{display:grid;gap:12px}
-.who-grid{display:flex;flex-wrap:wrap;gap:12px}
-.who-grid label{background:rgba(255,255,255,0.03);padding:12px 14px;border-radius:12px;cursor:pointer}
+.hero-card{background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(255,255,255,.01));padding:28px;border-radius:18px;margin-bottom:20px}
+.huge{font-size:clamp(28px,5.5vw,44px);margin:0 0 12px}
+.lead{font-size:clamp(14px,1.6vw,18px);opacity:.95;margin-bottom:12px}
+.cta .btn{margin-right:12px}
+.features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:18px}
+.card{background:var(--card);padding:18px;border-radius:12px;box-shadow:0 12px 40px rgba(0,0,0,.3)}
+.big-panel{padding:18px;background:var(--card);border-radius:12px;margin-bottom:18px}
+.who-grid{display:flex;flex-wrap:wrap;gap:10px}
+.who-grid label{background:transparent;border:1px solid rgba(255,255,255,0.04);padding:10px 12px;border-radius:12px;cursor:pointer}
 .selector-row{margin-top:12px}
-.selector-row label{margin-right:10px;color:var(--muted)}
+.custom-list{display:flex;flex-wrap:wrap;gap:8px}
+.custom-list label{background:transparent;padding:8px 10px;border-radius:10px;cursor:pointer;border:1px solid rgba(255,255,255,0.04)}
 .options-row{display:flex;gap:18px;align-items:center;margin-top:12px}
-.control-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:14px}
+.control-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:14px}
 .btn{padding:12px 18px;border-radius:12px;border:0;cursor:pointer;font-weight:800}
-.xlarge{padding:14px 20px;font-size:1.05rem}
-.primary{background:linear-gradient(90deg,var(--accent),#ff7abf);color:#fff;box-shadow:0 8px 30px rgba(255,59,138,.12)}
-.success{background:linear-gradient(90deg,#3ddc84,#8ef1c3);color:#022;box-shadow:0 8px 30px rgba(61,220,132,.08)}
+.xlarge{padding:14px 18px;font-size:1.05rem}
+.primary{background:linear-gradient(90deg,var(--accent),#ff8fb7);color:#fff}
+.success{background:linear-gradient(90deg,#3ddc84,#8ef1c3);color:#022}
 .danger{background:linear-gradient(90deg,#ff5d5d,#ff9b9b);color:#200}
 .meta-row{display:flex;gap:20px;color:var(--muted);margin-top:10px}
-.lyrics{background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));padding:18px;border-radius:12px;min-height:320px;white-space:pre-wrap;font-size:clamp(13px,1.4vw,16px)}
-.huge.lyrics{font-size:clamp(15px,1.8vw,18px)}
-.player-panel{display:flex;flex-direction:column;gap:12px}
-.download-row{display:flex;gap:12px;align-items:center}
-.download{padding:10px 14px;border-radius:10px;background:var(--glass);color:var(--fg);text-decoration:none}
-.disabled{opacity:.4;pointer-events:none}
-.custom-list{display:flex;flex-wrap:wrap;gap:8px}
-.custom-list label{background:rgba(255,255,255,0.03);padding:8px 10px;border-radius:10px;cursor:pointer}
+.lyrics{background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));padding:18px;border-radius:12px;min-height:360px;white-space:pre-wrap;font-size:15px;color:var(--fg)}
+.player-panel{margin-top:12px}
+.download-row{display:flex;gap:12px;align-items:center;margin-top:8px}
+.download{padding:10px 14px;border-radius:10px;background:transparent;color:var(--fg);text-decoration:none;border:1px solid rgba(255,255,255,0.06)}
+.disabled{opacity:.45;pointer-events:none}
 .gallery-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px}
-.card{background:var(--card);padding:12px;border-radius:12px}
+.card pre{white-space:pre-wrap}
 .foot{padding:24px;text-align:center;color:var(--muted)}
-@media (max-width:900px){ .options-row{flex-direction:column;align-items:flex-start} .cta-row{flex-direction:column} .huge{font-size:36px} }
 .hidden{display:none}
+@media (max-width:900px){
+  .options-row{flex-direction:column;align-items:flex-start}
+  .control-row{flex-direction:column}
+  .topnav{display:none}
+}
