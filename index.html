@@ -1,153 +1,44 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>K-Pop Fan AI Song Generator</title>
-  <style>
-    :root{
-      --bg:#fff0f8;--card:#ffffff;--accent:#ff77cc;--muted:#6b6b6b;
-      --shadow:0 6px 30px rgba(9,10,11,.06);
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%;margin:0;font-family:Poppins,system-ui,Arial;background:linear-gradient(180deg,#fff 0%,#fff0f8 100%);color:#111}
-    .wrap{max-width:1200px;margin:28px auto;padding:20px}
-    header{display:flex;gap:16px;align-items:center;justify-content:center;margin-bottom:20px}
-    .logo .dot{width:64px;height:64px;border-radius:20px;background:linear-gradient(135deg,#ff9ad6,#ff77cc);display:flex;align-items:center;justify-content:center;color:white;font-weight:800;font-size:22px;box-shadow:var(--shadow)}
-    h1{margin:0;font-size:26px;text-align:center;color:#ff44aa}
-    p.lead{text-align:center;color:var(--muted);margin-top:6px}
-
-    .grid{display:grid;grid-template-columns:1fr 400px;gap:20px}
-    @media(max-width:980px){.grid{grid-template-columns:1fr}}
-
-    .card{background:var(--card);border-radius:22px;padding:20px;box-shadow:var(--shadow);margin-bottom:18px}
-    h3{margin:0;color:#ff44aa}
-
-    button,select,input[type=range]{padding:12px 16px;border-radius:14px;border:1px solid rgba(0,0,0,.06);font-size:15px;cursor:pointer}
-    button{background:linear-gradient(135deg,#ff99d6,#ff77cc);color:white;font-weight:600;box-shadow:var(--shadow);transition:transform .15s}
-    button:hover{transform:scale(1.05)}
-    .big{font-size:18px;padding:16px 20px}
-
-    .lyrics{white-space:pre-wrap;font-family:monospace;background:linear-gradient(180deg,#fffefe,#fff0f8);padding:14px;border-radius:14px;min-height:220px;overflow:auto;line-height:1.6}
-    .members{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin-top:12px}
-    .member{background:linear-gradient(180deg,#fff,#fffefb);padding:12px;border-radius:14px;box-shadow:var(--shadow)}
-    .member h4{margin:0 0 6px 0;color:#ff44aa}
-
-    .footer{margin-top:20px;color:var(--muted);font-size:13px;text-align:center}
-    .copyright{margin-top:40px;padding:20px;text-align:center;background:#fff;border-radius:18px;box-shadow:var(--shadow)}
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KPOP Fan Song Generator</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
-<body>
-  <div class="wrap">
-    <header>
-      <div class="logo"><div class="dot">KP</div></div>
-    </header>
-    <h1>K-Pop Fan AI Song Generator</h1>
-    <p class="lead">Fan‑made app that generates random K‑pop inspired songs (lyrics + synth vocals). Everything runs directly in your browser.</p>
+<body class="light">
+  <header>
+    <nav>
+      <h1>YG-Style KPOP Song Generator</h1>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="generator.html">Generator</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><button id="modeToggle">🌙</button></li>
+      </ul>
+    </nav>
+  </header>
 
-    <div class="grid">
-      <div>
-        <div class="card">
-          <h3>Controls</h3>
-          <label>Language: <select id="langMode"><option value="mix">Mix English + Korean</option><option value="eng">English only</option><option value="kor">Korean only</option></select></label>
-          <br><br>
-          <label>Mood: <select id="mood"><option value="bright">Bright</option><option value="dark">Dark</option><option value="romantic">Romantic</option><option value="angry">Aggressive</option><option value="melancholy">Melancholy</option></select></label>
-          <br><br>
-          <label>Members: <input id="memberCount" type="range" min="3" max="6" value="4"></label>
-          <br><br>
-          <button id="generateBtn" class="big">🎶 Generate Song</button>
-        </div>
+  <section class="parallax parallax-1">
+    <h2>BLACKPINK × BABYMONSTER Inspired</h2>
+    <p>Generate random fan-made songs with YG vibes!</p>
+    <a href="generator.html" class="cta">Start Generating</a>
+  </section>
 
-        <div class="card">
-          <h3>Lyrics</h3>
-          <div id="lyrics" class="lyrics">Press Generate Song to create lyrics…</div>
-        </div>
+  <section class="parallax parallax-2">
+    <h2>English + 한국어</h2>
+    <p>Lyrics in both languages, with rap and vocals per member.</p>
+  </section>
 
-        <div class="card">
-          <h3>Member Lines</h3>
-          <div id="membersGrid" class="members"></div>
-        </div>
-      </div>
+  <section class="parallax parallax-3">
+    <h2>Audio Included</h2>
+    <p>AI-generated synth vocals + browser TTS (English & Korean).</p>
+  </section>
 
-      <aside>
-        <div class="card">
-          <h3>Player</h3>
-          <button id="playBtn" class="big">▶ Play</button>
-          <button id="stopBtn" class="big">■ Stop</button>
-          <button id="downloadBtn" class="big" disabled>⬇ Download WAV</button>
-          <p style="margin-top:10px;color:var(--muted);font-size:13px">Audio is synthetic vocals with backing — runs 100% in browser.</p>
-        </div>
-      </aside>
-    </div>
-
-    <div class="footer">All lyrics/audio are original and AI‑generated. This does not clone real artists’ voices.</div>
-
-    <div class="copyright">
-      <strong>Copyright © 2025 Abdur Rahman Mansoor</strong><br>
-      This is a fan‑made project hosted on <a href="https://github.com/armansoor" target="_blank">github.com/armansoor</a>.<br>
-      All rights reserved. Not affiliated with BLACKPINK or BABYMONSTER.<br>
-      Generated content is for personal and educational use only.
-    </div>
-  </div>
-
-  <script>
-  const EN={bright:["Shine on the night","Hands up, we fly"],dark:["Shadows in the city","Cold like the moon"],romantic:["Softly you call","Hold me closer"],angry:["Break the silence","Roar through the walls"],melancholy:["Rain drips slow","Empty seat beside me"]};
-  const KR={bright:["빛나는 밤에","우린 날아가"],dark:["도시의 그림자","달처럼 차가워"],romantic:["부드럽게 불러줘","조금 더 가까이"],angry:["침묵을 깨자","벽을 뚫고 소리쳐"],melancholy:["비가 천천히","빈자리에 너 없어"]};
-  function pick(a){return a[Math.floor(Math.random()*a.length)]}
-
-  function buildLyrics(lang,mood,members){
-    const sec=["VERSE","CHORUS","BRIDGE"];
-    const langOpt=lang==="mix"?["en","kr"]:lang==="eng"?["en"]:["kr"];
-    const lyrics=[];
-    for(const s of sec){
-      let t=s+"\n";
-      for(let i=0;i<4;i++){
-        const l=pick(langOpt);
-        const phrase=l==='en'?pick(EN[mood]):pick(KR[mood]);
-        t+=phrase+"\n";
-      }
-      lyrics.push({sec:s,text:t});
-    }
-    const membersArr=Array.from({length:members},(_,i)=>({name:`Member ${i+1}`,lines:[]}));
-    let idx=0;
-    for(const l of lyrics){
-      for(const line of l.text.split("\n").filter(Boolean)){
-        membersArr[idx%membersArr.length].lines.push({section:l.sec,line});
-        idx++;
-      }
-    }
-    return{lyrics,members:membersArr};
-  }
-
-  let audioCtx,masterGain,masterDest,mediaRecorder,recordedChunks=[];
-  function ensureAudio(){if(!audioCtx){audioCtx=new(window.AudioContext||window.webkitAudioContext)();masterGain=audioCtx.createGain();masterGain.gain.value=0.8;masterGain.connect(audioCtx.destination);masterDest=audioCtx.createMediaStreamDestination();masterGain.connect(masterDest);}}
-
-  function play(gen){stop();ensureAudio();recordedChunks=[];mediaRecorder=new MediaRecorder(masterDest.stream);mediaRecorder.ondataavailable=e=>{if(e.data.size)recordedChunks.push(e.data)};mediaRecorder.onstop=()=>{const blob=new Blob(recordedChunks,{type:'audio/wav'});window.latestRecording=blob;document.getElementById('downloadBtn').disabled=false};mediaRecorder.start();
-    const now=audioCtx.currentTime+0.2;let t=now;
-    for(const m of gen.members){for(const l of m.lines){const syls=l.line.split(/\s+/).filter(Boolean);for(const s of syls){scheduleVocal(t,s);t+=0.3;}}}
-    setTimeout(()=>stop(),(t-now+1)*1000);
-  }
-
-  function stop(){if(mediaRecorder&&mediaRecorder.state!=='inactive')mediaRecorder.stop();}
-
-  function scheduleVocal(when,s){const osc=audioCtx.createOscillator();osc.type='triangle';const gain=audioCtx.createGain();const f=audioCtx.createBiquadFilter();f.type='bandpass';f.frequency.value=800+Math.random()*600;osc.frequency.value=220+Math.random()*200;osc.connect(f);f.connect(gain);gain.connect(masterGain);osc.start(when);gain.gain.setValueAtTime(0.0001,when);gain.gain.linearRampToValueAtTime(0.5,when+0.05);gain.gain.linearRampToValueAtTime(0.0001,when+0.25);osc.stop(when+0.3);}
-
-  document.getElementById('generateBtn').addEventListener('click',()=>{
-    const lang=document.getElementById('langMode').value;
-    const mood=document.getElementById('mood').value;
-    const members=Number(document.getElementById('memberCount').value);
-    const gen=buildLyrics(lang,mood,members);
-    let out="";for(const l of gen.lyrics){out+=l.text+"\n";}
-    document.getElementById('lyrics').textContent=out;
-    const mg=document.getElementById('membersGrid');mg.innerHTML="";
-    for(const m of gen.members){const d=document.createElement('div');d.className='member';d.innerHTML=`<h4>${m.name}</h4>`+m.lines.map(l=>`<div>[${l.section}] ${l.line}</div>`).join('');mg.appendChild(d);}
-    window.latestGen=gen;
-    document.getElementById('downloadBtn').disabled=true;
-  });
-
-  document.getElementById('playBtn').addEventListener('click',async()=>{if(!window.latestGen){alert('Generate song first');return;}if(audioCtx&&audioCtx.state==='suspended')await audioCtx.resume();play(window.latestGen);});
-  document.getElementById('stopBtn').addEventListener('click',()=>stop());
-  document.getElementById('downloadBtn').addEventListener('click',()=>{if(!window.latestRecording){alert('No recording');return;}const url=URL.createObjectURL(window.latestRecording);const a=document.createElement('a');a.href=url;a.download='song.wav';a.click();URL.revokeObjectURL(url);});
-  </script>
+  <footer>
+    <p>© 2025 Abdur Rahman Mansoor | Fan-Made Project</p>
+  </footer>
+  <script src="app.js"></script>
 </body>
 </html>
