@@ -6,52 +6,59 @@
   <title>Generator • YG-GEN</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
-<body data-theme="dark">
+<body>
   <header class="nav big">
     <div class="brand">YG-GEN ♫</div>
-    <nav>
+    <nav class="topnav">
       <a href="index.html">Home</a>
       <a href="generator.html" class="active">Generator</a>
       <a href="gallery.html">Gallery</a>
       <a href="about.html">About</a>
     </nav>
-    <div class="right">
-      <button id="themeToggle" class="btn-ghost">🌙</button>
+
+    <div class="theme-controls">
+      <label for="themeChoice">Theme</label>
+      <select id="themeChoiceGen">
+        <option value="yg">YG Official</option>
+        <option value="cute">Cute Fan</option>
+      </select>
     </div>
   </header>
 
   <main class="container large">
-    <h2 class="huge">Generate a Full-Length K-POP Song</h2>
-
     <section class="panel big-panel">
-      <h3>Who sings? (Select one)</h3>
-      <div class="who-grid">
-        <label><input type="radio" name="who" value="blackpink" checked> BLACKPINK (4)</label>
-        <label><input type="radio" name="who" value="babymonster"> BABYMONSTER (7)</label>
-        <label><input type="radio" name="who" value="both"> Both groups (11)</label>
-        <label><input type="radio" name="who" value="solo"> Solo member</label>
-        <label><input type="radio" name="who" value="custom"> Custom (2–3)</label>
-      </div>
+      <h2 class="huge">Generate a Full K-POP Song</h2>
 
-      <div id="soloSelect" class="selector-row hidden">
-        <label>Select solo:</label>
-        <select id="soloMember"></select>
-      </div>
+      <div class="who-panel">
+        <h3>Who sings?</h3>
+        <div class="who-grid">
+          <label><input type="radio" name="who" value="blackpink" checked> BLACKPINK (4)</label>
+          <label><input type="radio" name="who" value="babymonster"> BABYMONSTER (7)</label>
+          <label><input type="radio" name="who" value="both"> Both groups (11)</label>
+          <label><input type="radio" name="who" value="solo"> Solo member</label>
+          <label><input type="radio" name="who" value="custom"> Custom (2–3)</label>
+        </div>
 
-      <div id="customSelect" class="selector-row hidden">
-        <label>Select custom (pick 2–3):</label>
-        <div id="customList" class="custom-list"></div>
+        <div id="soloSelect" class="selector-row hidden">
+          <label>Select solo:</label>
+          <select id="soloMember"></select>
+        </div>
+
+        <div id="customSelect" class="selector-row hidden">
+          <label>Select 2–3 members:</label>
+          <div id="customList" class="custom-list"></div>
+        </div>
       </div>
 
       <div class="options-row">
-        <label for="langMode">Language mode</label>
+        <label>Language</label>
         <select id="langMode">
           <option value="mixed" selected>Mixed (EN + KO)</option>
           <option value="en">English only</option>
           <option value="ko">Korean only</option>
         </select>
 
-        <label for="duration">Target duration</label>
+        <label>Length</label>
         <select id="duration">
           <option value="180">~3:00</option>
           <option value="210">~3:30</option>
@@ -60,29 +67,30 @@
       </div>
 
       <div class="control-row">
-        <button id="generateBtn" class="btn primary xlarge">Generate Lyrics & Prepare Audio</button>
+        <button id="generateBtn" class="btn primary xlarge">Generate Lyrics</button>
         <button id="playTTS" class="btn xlarge">▶ Play Live TTS</button>
         <button id="stopTTS" class="btn xlarge danger" disabled>■ Stop TTS</button>
-        <button id="renderWav" class="btn xlarge success" disabled>🔁 Render WAV (Downloadable)</button>
+        <button id="renderWav" class="btn xlarge success" disabled>🔁 Render WAV</button>
+        <button id="saveBtn" class="btn xlarge">💾 Save to Gallery</button>
       </div>
 
       <div class="meta-row">
-        <div>Combinations: <strong id="combos">≥100,000</strong></div>
-        <div>Duration Target: <strong id="durTarget">~3:00</strong></div>
+        <div>Combinations: <strong id="combos">≥ 120,000</strong></div>
+        <div>Duration target: <strong id="durTarget">~3:00</strong></div>
       </div>
     </section>
 
     <section class="panel lyrics-panel">
       <h3 class="big">Lyrics (member-wise)</h3>
-      <pre id="lyricsOutput" class="lyrics huge" aria-live="polite">Press “Generate” to create a song...</pre>
+      <pre id="lyricsOutput" class="lyrics huge">Press “Generate Lyrics” to create a song…</pre>
     </section>
 
     <section class="panel player-panel">
       <h3>Audio</h3>
       <audio id="downloadableAudio" controls style="width:100%"></audio>
       <div class="download-row">
-        <a id="downloadLink" class="download disabled" download="ygfan_song.wav">⬇️ Download WAV</a>
-        <button id="saveBtn" class="btn">💾 Save to Gallery</button>
+        <a id="downloadLink" class="download disabled" download="ygfan_song.webm">⬇️ Download</a>
+        <div id="renderStatus" style="color:var(--muted);margin-left:12px">Idle</div>
       </div>
     </section>
   </main>
