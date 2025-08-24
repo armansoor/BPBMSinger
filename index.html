@@ -6,49 +6,52 @@
   <title>YG-GEN • K-POP Fan Song Generator</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
-<body data-theme="dark">
+<body>
   <header class="nav big">
     <div class="brand">YG-GEN ♫</div>
-    <nav>
+    <nav class="topnav">
       <a href="index.html">Home</a>
-      <a href="generator.html" class="active">Generator</a>
+      <a href="generator.html">Generator</a>
       <a href="gallery.html">Gallery</a>
       <a href="about.html">About</a>
     </nav>
-    <div class="right">
-      <button id="themeToggle" class="btn-ghost">🌙</button>
+
+    <div class="theme-controls">
+      <label for="themeChoice">Theme</label>
+      <select id="themeChoice">
+        <option value="yg">YG Official</option>
+        <option value="cute">Cute Fan</option>
+      </select>
     </div>
   </header>
 
-  <section class="hero parallax-1 big-hero">
-    <div class="hero-inner">
-      <h1 class="huge">BLACKPINK × BABYMONSTER</h1>
-      <p class="lead">Fan-made K-POP song generator — big UI, long songs, TTS & downloadable WAV — all in your browser.</p>
-      <div class="cta-row">
-        <a class="btn primary big" href="generator.html">Generate a Song</a>
+  <main class="container large">
+    <section class="hero-card">
+      <h1 class="huge">YG-GEN — Fan K-POP Song Generator</h1>
+      <p class="lead">Generate full-length, member-wise K-POP songs inspired by BLACKPINK & BABYMONSTER. Big UI, TTS playback (Korean & English), and downloadable audio — all in your browser.</p>
+      <div class="cta">
+        <a class="btn primary big" href="generator.html">Start Generating</a>
         <a class="btn outline big" href="gallery.html">Open Gallery</a>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <main class="container large">
-    <section class="features big-cards">
+    <section class="features-grid">
       <div class="card">
-        <h3>Huge Songs</h3>
-        <p>40–60 lines with full structure (Intro → Verse → Pre → Chorus → Rap → Bridge → Chorus → Outro).</p>
+        <h3>Who sings?</h3>
+        <p>Select groups, solos, or a custom 2–3 member combo.</p>
       </div>
       <div class="card">
-        <h3>Who Sings?</h3>
-        <p>Choose BLACKPINK only, BABYMONSTER only, both, a solo, or a custom 2–3 member combo.</p>
+        <h3>Big songs</h3>
+        <p>40–60 lines, structured sections (Intro → Verse → Pre → Chorus → Rap → Bridge → Outro).</p>
       </div>
       <div class="card">
-        <h3>Play & Download</h3>
-        <p>Live TTS playback (Korean & English) and downloadable WAV render from in-browser synth.</p>
+        <h3>Audio</h3>
+        <p>Live TTS playback and downloadable musical render (WebAudio + MediaRecorder).</p>
       </div>
     </section>
   </main>
 
-  <footer class="foot big-foot">
+  <footer class="foot">
     © 2025 Abdur Rahman Mansoor — github.com/armansoor — Fan project
   </footer>
 
