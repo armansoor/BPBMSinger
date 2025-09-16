@@ -4,7 +4,9 @@
 // ---------- MEMBERS ----------
 const BLACKPINK = ["Jisoo (V)", "Jennie (R/V)", "Rosé (V)", "Lisa (R)"];
 const BABYMONSTER = ["Ahyeon (V)", "Ruka (R)", "Rami (V)", "Asa (R)", "Haram (V)", "Pharita (V)", "Chiquita (V)"];
-const ALL = [...BLACKPINK, ...BABYMONSTER];
+const GIDLE = ["Miyeon (V)", "Minnie (V)", "Soyeon (R/V)", "Yuqi (V)", "Shuhua (V)"];
+const AESPA = ["Karina (R/V)", "Giselle (R)", "Winter (V)", "Ningning (V)"];
+const ALL = [...BLACKPINK, ...BABYMONSTER, ...GIDLE, ...AESPA];
 
 // ---------- DATASET ----------
 const THEMES = {
@@ -19,6 +21,10 @@ const THEMES = {
   youth: {
     en: ["Neon nights and restless dreams", "Run with me into sunrise", "We were born to shine", "Keep the flame alive", "Dancing till the sun will rise"],
     kr: ["네온 불빛 아래 춤춰", "해 뜰 때까지 달려", "우린 빛나기 위해 태어났어", "불씨를 꺼지지 않게 해", "젊음의 밤은 끝없어"]
+  },
+  "self-love": {
+    en: ["I'm walking my own way", "This confidence, it's my design", "Mirror shows who I wanna be", "The only one I need is me", "Love the fire in my soul"],
+    kr: ["나만의 길을 걸어가", "이 자신감은 나의 것", "거울 속 내가 보여", "나에게 필요한 건 나뿐", "내 영혼의 불꽃을 사랑해"]
   }
 };
 const ADLIB = { en:["Oh", "Yeah", "Na-na", "Woah", "Hey"], kr:["어", "예", "나나", "우와", "오"] };
@@ -152,6 +158,8 @@ function bindGenerator(){
       let members = [];
       if(who === "blackpink") members = [...BLACKPINK];
       else if(who === "babymonster") members = [...BABYMONSTER];
+      else if(who === "gidle") members = [...GIDLE];
+      else if(who === "aespa") members = [...AESPA];
       else if(who === "both") members = [...ALL];
       else if(who === "solo"){
         const s = document.getElementById("soloMember").value;
